@@ -30,6 +30,10 @@ preinit_set_mac_address() {
 		mac=$(macaddr_setbit_la "$mac")
 		ifconfig eth0 hw ether $mac 2>/dev/null
 		;;
+	hlk-rm04)
+		mac=$(mtd_get_mac_binary factory 46)
+		ifconfig eth0 hw ether $mac 2>/dev/null
+		;;
 	dir-300-b1 |\
 	dir-300-b2 |\
 	dir-600-b1)

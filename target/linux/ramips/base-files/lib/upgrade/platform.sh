@@ -34,6 +34,7 @@ platform_check_image() {
 	fonera20n | \
 	rt-n13u | \
 	freestation5 | \
+	hlk-rm04 | \
 	hw550-3g | \
 	mofi3500-3gn | \
 	mzk-w300nh2 | \

@@ -85,6 +85,9 @@ ramips_board_name() {
 	*"Hauppauge Broadway")
 		name="broadway"
 		;;
+	*"HiLink HLK-RM04")
+		name="hlk-rm04"
+		;;
 	*"La Fonera 2.0N")
 		name="fonera20n"
 		;;

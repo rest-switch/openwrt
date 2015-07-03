@@ -551,6 +551,10 @@ define Image/Build/Profile/FREESTATION5
 	$(call Image/Build/Template/$(fs_squash)/$(1),GENERIC_8M,freestation5,FREESTATION5,ttyS1,115200,phys)
 endef
 
+define Image/Build/Profile/HLK_RM04
+	$(call Image/Build/Template/$(fs_squash)/$(1),GENERIC_4M,hlk-rm04,HLK-RM04,ttyS1,57600,spi)
+endef
+
 define Image/Build/Profile/MOFI35003GN
 	$(call Image/Build/Template/$(fs_squash)/$(1),GENERIC_8M,mofi3500-3gn,MOFI3500-3GN,ttyS1,57600,phys)
 endef
@@ -667,6 +671,7 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/FONERA20N,$(1))
 	$(call Image/Build/Profile/RT-N13U,$(1))
 	$(call Image/Build/Profile/FREESTATION5,$(1))
+	$(call Image/Build/Profile/HLK_RM04,$(1))
 	$(call Image/Build/Profile/HW5503G,$(1))
 	$(call Image/Build/Profile/MOFI35003GN,$(1))
 	$(call Image/Build/Profile/MZKW3000NH2,$(1))

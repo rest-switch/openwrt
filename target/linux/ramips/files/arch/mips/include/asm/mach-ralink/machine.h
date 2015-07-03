@@ -84,4 +84,5 @@ enum ramips_mach_type {
 
 	/* RT5350 based machines */
 	RAMIPS_MACH_AIR3GII,		/* AirLive Air3GII */
+	RAMIPS_MACH_HLK_RM04,		/* HiLink HLK-RM04 */
 };

@@ -40,7 +40,8 @@ ramips_setup_interfaces()
 	3g300m | \
 	all0256n | \
 	all5002 | \
-	broadway)
+	broadway | \
+	hlk-rm04)
 		ucidef_add_switch "switch0" "1" "0"
 		ucidef_set_interface_lan "eth0"
 		;;

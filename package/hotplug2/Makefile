@@ -12,14 +12,9 @@ PKG_REV:=201
 PKG_VERSION:=$(PKG_REV)
 PKG_RELEASE:=4
 
-PKG_SOURCE_PROTO:=svn
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_SOURCE_SUBDIR:=hotplug2-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://svn.nomi.cz/svn/isteve/hotplug2
-PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
-PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
-#PKG_SOURCE_URL:=http://isteve.bofh.cz/~isteve/hotplug2
-#PKG_MD5SUM:=ea2c01d027b4002e4e6b0ff266f51a51
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=http://downloads.openwrt.org/sources/
+PKG_MD5SUM:=7bab8ba67555a8400424f3c92ec67579
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -29,7 +24,7 @@ define Package/hotplug2
   VERSION:=1.0-beta-$(PKG_RELEASE)
   TITLE:=Version 1.0 Dynamic device management subsystem for embedded systems
   URL:=http://isteve.bofh.cz/~isteve/hotplug2/
-  DEPENDS:=+USE_EGLIBC:libbsd
+  DEPENDS:=+!USE_UCLIBC:libbsd
 endef
 
 define Package/hotplug2/description

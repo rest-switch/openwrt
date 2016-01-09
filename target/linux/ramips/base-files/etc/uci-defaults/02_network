@@ -40,10 +40,26 @@ ramips_setup_interfaces()
 	3g300m | \
 	all0256n | \
 	all5002 | \
-	broadway | \
-	hlk-rm04)
+	broadway)
 		ucidef_add_switch "switch0" "1" "0"
 		ucidef_set_interface_lan "eth0"
+		;;
+
+	hlk-rm04)
+		uci batch <<- EOF
+			set network.lan='interface'
+			set network.lan.ifname='eth0'
+			set network.lan.proto='dhcp'
+
+			set network.wifi='interface'
+			set network.wifi.ifname='wlan0'
+			set network.wifi.proto='dhcp'
+
+			add network switch
+			set network.@switch[-1].name='switch0'
+			set network.@switch[-1].reset='1'
+			set network.@switch[-1].enable_vlan='0'
+		EOF
 		;;
 
 	dir-615-h1 | \

@@ -19,13 +19,12 @@
 
 #include "devices.h"
 
-#define HLK_RM04_GPIO_LED_POWER     	0
-
-#define HLK_RM04_GPIO_BUTTON_WPS	0	/* active low */
-#define HLK_RM04_GPIO_BUTTON_RESET	10	/* active low */
+#define HLK_RM04_GPIO_BUTTON_RESET	 0	/* active low */
+#define HLK_RM04_GPIO_BUTTON_WPS	14	/* active low */
 
 #define HLK_RM04_KEYS_POLL_INTERVAL	20	/* ms */
 #define HLK_RM04_KEYS_DEBOUNCE_INTERVAL	(3 * HLK_RM04_KEYS_POLL_INTERVAL)
+
 
 const struct flash_platform_data hlk_rm04_flash = {
 		.type			= "w25q32",
@@ -39,15 +38,6 @@ struct spi_board_info hlk_rm04_spi_slave_info[] __initdata = {
 		.max_speed_hz		= 10000000,
 		.bus_num		= 0,
 		.chip_select		= 0,
-	},
-};
-
-static struct gpio_led hlk_rm04_leds_gpio[] __initdata = {
-	{
-		.name			= "hlk-rm04:red:power",
-		.gpio			= HLK_RM04_GPIO_LED_POWER,
-		.active_low		= 1,
-		.default_state		= LEDS_GPIO_DEFSTATE_ON,
 	},
 };
 
@@ -71,13 +61,11 @@ static struct gpio_keys_button hlk_rm04_gpio_buttons[] __initdata = {
 
 static void __init hlk_rm04_init(void)
 {
-	rt305x_gpio_init((RT305X_GPIO_MODE_GPIO << RT305X_GPIO_MODE_UART0_SHIFT) | 
+	rt305x_gpio_init((RT305X_GPIO_MODE_GPIO_UARTF << RT305X_GPIO_MODE_UART0_SHIFT) |
+				RT305X_GPIO_MODE_I2C | 
 				RT305X_GPIO_MODE_JTAG);
 
 	rt305x_register_spi(hlk_rm04_spi_slave_info, ARRAY_SIZE(hlk_rm04_spi_slave_info));
-
-	ramips_register_gpio_leds(-1, ARRAY_SIZE(hlk_rm04_leds_gpio),
-					hlk_rm04_leds_gpio);
 
 	ramips_register_gpio_buttons(-1, HLK_RM04_KEYS_POLL_INTERVAL, 
 					ARRAY_SIZE(hlk_rm04_gpio_buttons), hlk_rm04_gpio_buttons);
